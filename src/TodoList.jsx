@@ -18,9 +18,6 @@ export function TodoList(props) {
           onSwitchInputToText={(string) => {
             props.onSwitchInputToText(item.id, string);
           }}
-          onSwitchTextToInput={() => {
-            props.onSwitchTextToInput(item.id);
-          }}
         />
       ))}
     </ul>
@@ -29,7 +26,7 @@ export function TodoList(props) {
 
 function TodoListItem(props) {
   const [isEditing, setIsEditing] = useState(false);
-  const [tempText, setTempText] = useState("");
+  // const [tempText, setTempText] = useState("");
 
   let listItemClass = "todo-list__item";
   let listItemText = "todo-list__item-text";
@@ -70,7 +67,10 @@ function TodoListItem(props) {
           <input
             className={listItemInputClass}
             type="text"
-            onChange={(e) => props.onSwitchInputToText(e.target.value)}
+            onChange={(e) => {
+              // setTempText(e.target.value);
+              props.onSwitchInputToText(e.target.value);
+            }}
             value={props.item.text}
             onBlur={() => {
               setIsEditing(false);
