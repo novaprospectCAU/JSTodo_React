@@ -1,36 +1,28 @@
-import "./Toolbar.css";
+import styles from "./Toolbar.module.css";
+import classNames from "classnames";
 
 export function Toolbar(props) {
-  let toolbarClass = "todo-list__menu";
+  const toolbarClass = classNames("todo-list__menu", {
+    [styles.hiding]: props.items.length === 0,
+  });
 
-  let filterAllClass = "control-all";
-  let filterActiveClass = "control-active";
-  let filterCompletedClass = "control-completed";
+  const filterAllClass = classNames([styles.all], {
+    [styles.inactive]: props.currentFilter !== "all",
+  });
+  const filterActiveClass = classNames([styles.active], {
+    [styles.inactive]: props.currentFilter !== "active",
+  });
+  const filterCompletedClass = classNames([styles.completed], {
+    [styles.inactive]: props.currentFilter !== "completed",
+  });
 
-  let clearButtonClass = "menu-clear";
-
-  if (props.items.length === 0) {
-    toolbarClass += " todo-list__menu--hiding";
-  }
-
-  if (props.currentFilter === "all") {
-    filterActiveClass += " control-button--inactive";
-    filterCompletedClass += " control-button--inactive";
-  } else if (props.currentFilter === "active") {
-    filterAllClass += " control-button--inactive";
-    filterCompletedClass += " control-button--inactive";
-  } else {
-    filterAllClass += " control-button--inactive";
-    filterActiveClass += " control-button--inactive";
-  }
-
-  if (!props.items.some((item) => item.isCompleted)) {
-    clearButtonClass += " menu-clear--hiding";
-  }
+  const clearButtonClass = classNames([styles.clear], {
+    [styles.hidden]: !props.items.some((item) => item.isCompleted),
+  });
 
   return (
     <div className={toolbarClass}>
-      <div className="menu__count">
+      <div className={styles.count}>
         {props.items.filter((item) => !item.isCompleted).length} items left
       </div>
       <div className="menu__control">

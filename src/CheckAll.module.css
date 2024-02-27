@@ -1,14 +1,23 @@
+.checkAll {
+  padding: 24px;
+
+  font-size: 16px;
+  border-color: rgb(0, 0, 0, 0.003);
+  transform: rotate(90deg);
+  background-color: rgb(0, 0, 0, 0.003);
+}
+
 /* 클릭으로 토글할 수도 있지만 
   모두 체크 혹은 해제 시에도 상태가 변하므로 
   unclicked,clicked 대신 off,on사용 */
-.check-all--off {
+.off {
   color: #c0c0c0;
 }
 
-.check-all--on {
+.on {
   color: #101010;
 }
 
-.check-all--initial {
+.initial {
   visibility: hidden;
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "./TodoList.css";
+import styles from "./TodoList.module.css";
+import classNames from "classnames";
 
 export function TodoList(props) {
   return (
@@ -28,32 +29,26 @@ function TodoListItem(props) {
   const [isEditing, setIsEditing] = useState(false);
   const [tempText, setTempText] = useState(props.item.text);
 
-  let listItemClass = "todo-list__item";
-  let listItemText = "todo-list__item-text";
-  let listItemInputClass = "todo-list__item-input";
+  const listItemClass = classNames(styles.todoListItem, {
+    [styles.hiding]:
+      (props.currentFilter === "active" && props.item.isCompleted) ||
+      (props.currentFilter === "completed" && !props.item.isCompleted),
+  });
 
-  if (
-    (props.currentFilter === "active" && props.item.isCompleted) ||
-    (props.currentFilter === "completed" && !props.item.isCompleted)
-  ) {
-    listItemClass += " todo-list__item--hiding";
-  }
-  if (props.item.isCompleted) {
-    listItemText += " todo-list__item-checked";
-  }
-  if (isEditing) {
-    listItemText += " todo-list--switch";
-  } else {
-    listItemInputClass += " todo-list--switch";
-  }
+  const listItemText = classNames(styles.text, {
+    [styles.checked]: props.item.isCompleted,
+    [styles.switch]: isEditing,
+  });
+
+  const listItemInputClass = classNames(styles.input, {
+    [styles.switch]: !isEditing,
+  });
+
   if (props)
     return (
       <li className={listItemClass}>
-        <div className="todo-list__item-left">
-          <button
-            className="todo-list__item-check-button"
-            onClick={props.onCheck}
-          >
+        <div className={styles.left}>
+          <button className={styles.checkButton} onClick={props.onCheck}>
             {props.item.isCompleted ? "✔️" : ""}
           </button>
           <div
@@ -83,7 +78,7 @@ function TodoListItem(props) {
             }}
           />
         </div>
-        <button className="todo-list__delete-button" onClick={props.onDelete}>
+        <button className={styles.deleteButton} onClick={props.onDelete}>
           X
         </button>
       </li>
