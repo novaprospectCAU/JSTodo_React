@@ -68,7 +68,7 @@ function TodoListItem(props) {
             className={listItemInputClass}
             type="text"
             onChange={(e) => {
-              setTempText(() => e.target.value);
+              setTempText(e.target.value);
               props.onSwitchInputToText(props.item.text);
             }}
             value={tempText}
