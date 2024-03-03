@@ -16,7 +16,7 @@ export function TodoList(props) {
           onCheck={() => {
             props.onCheck(item.id);
           }}
-          onSwitchInputToText={(string) => {
+          onSwitchInputToText={(string: string) => {
             props.onSwitchInputToText(item.id, string);
           }}
         />

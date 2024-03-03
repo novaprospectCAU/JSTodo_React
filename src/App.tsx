@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./App.css";
 
-import { TodoInput } from "./TodoInput.jsx";
-import { TodoList } from "./TodoList.jsx";
-import { Toolbar } from "./Toolbar.jsx";
-import { CheckAllButton } from "./CheckAll.jsx";
+import { TodoInput } from "./TodoInput.tsx";
+import { TodoList } from "./TodoList.tsx";
+import { Toolbar } from "./Toolbar.tsx";
+import { CheckAllButton } from "./CheckAll.tsx";
 
 let lastUsedId = 0;
 
@@ -48,7 +48,7 @@ export function App() {
           }}
         />
         <TodoInput
-          onAddItem={(string) => {
+          onAddItem={(string: string) => {
             const newItem = {
               id: getNextId(),
               text: string,
@@ -61,10 +61,10 @@ export function App() {
       <TodoList
         items={items}
         currentFilter={currentFilter}
-        onDelete={(id) => {
+        onDelete={(id: number) => {
           setItems(items.filter((item) => item.id !== id));
         }}
-        onCheck={(id) => {
+        onCheck={(id: number) => {
           setItems(
             items.map((item) =>
               item.id === id
@@ -76,7 +76,7 @@ export function App() {
             )
           );
         }}
-        onSwitchInputToText={(id, string) => {
+        onSwitchInputToText={(id: number, string: string) => {
           setItems(
             items.map((item) =>
               item.id === id
