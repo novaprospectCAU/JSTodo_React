@@ -1,8 +1,8 @@
-import { Item } from "./App";
+import { CheckAllButtonProps, Item } from "./App";
 import styles from "./CheckAll.module.css";
 import classNames from "classnames";
 
-export function CheckAllButton(props) {
+export function CheckAllButton(props: CheckAllButtonProps) {
   const checkAllButtonClass = classNames(
     styles.checkAll,
     props.items.length === 0

@@ -1,9 +1,17 @@
 import { useState } from "react";
 import styles from "./TodoList.module.css";
 import classNames from "classnames";
-import { Item } from "./App";
+import { Item, TodoListProps } from "./App";
 
-export function TodoList(props) {
+interface TodoListItemProps {
+  item: Item;
+  currentFilter: string;
+  onDelete: () => void;
+  onCheck: () => void;
+  onSwitchInputToText: (string: string) => void;
+}
+
+export function TodoList(props: TodoListProps) {
   return (
     <ul className="todo-list">
       {props.items.map((item: Item) => (
@@ -26,7 +34,7 @@ export function TodoList(props) {
   );
 }
 
-function TodoListItem(props) {
+function TodoListItem(props: TodoListItemProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [tempText, setTempText] = useState(props.item.text);
 

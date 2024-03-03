@@ -1,8 +1,8 @@
-import { Item } from "./App";
+import { Item, ToolbarProps } from "./App";
 import styles from "./Toolbar.module.css";
 import classNames from "classnames";
 
-export function Toolbar(props) {
+export function Toolbar(props: ToolbarProps) {
   const toolbarClass = classNames("todo-list__menu", {
     [styles.hiding]: props.items.length === 0,
   });

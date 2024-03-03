@@ -14,6 +14,30 @@ export interface Item {
   isCompleted: boolean;
 }
 
+export interface CheckAllButtonProps {
+  items: Item[];
+  onToggleAll: () => void;
+}
+
+export interface TodoInputProps {
+  onAddItem: (string: string) => void;
+}
+
+export interface TodoListProps {
+  items: Item[];
+  currentFilter: string;
+  onDelete: (id: number) => void;
+  onCheck: (id: number) => void;
+  onSwitchInputToText: (id: number, string: string) => void;
+}
+
+export interface ToolbarProps {
+  items: Item[];
+  currentFilter: string;
+  onChangeCurrentFilter: (string: string) => void;
+  onDeleteCheck: () => void;
+}
+
 function getNextId(): number {
   return lastUsedId++;
 }

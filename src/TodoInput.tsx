@@ -1,6 +1,7 @@
+import { TodoInputProps } from "./App";
 import "./TodoInput.css";
 
-export function TodoInput(props) {
+export function TodoInput(props: TodoInputProps) {
   return (
     <input
       className="todo-input"
