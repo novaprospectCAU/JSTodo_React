@@ -7,14 +7,14 @@ export function TodoInput(props) {
       type="text"
       placeholder="What needs to be done?"
       autoFocus
-      onKeyDown={(e) => {
+      onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
         //1
-        if (e.key === "Enter" && !e.isComposing) {
-          const string = e.target.value.trim();
+        if (e.key === "Enter" && !e.nativeEvent.isComposing) {
+          const string = e.currentTarget.value.trim();
           if (string) {
             //2
             props.onAddItem(string);
-            e.target.value = "";
+            e.currentTarget.value = "";
           }
         }
       }}
