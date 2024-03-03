@@ -1,3 +1,4 @@
+import { Item } from "./App";
 import styles from "./Toolbar.module.css";
 import classNames from "classnames";
 
@@ -17,13 +18,14 @@ export function Toolbar(props) {
   });
 
   const clearButtonClass = classNames([styles.clear], {
-    [styles.hidden]: !props.items.some((item) => item.isCompleted),
+    [styles.hidden]: !props.items.some((item: Item) => item.isCompleted),
   });
 
   return (
     <div className={toolbarClass}>
       <div className={styles.count}>
-        {props.items.filter((item) => !item.isCompleted).length} items left
+        {props.items.filter((item: Item) => !item.isCompleted).length} items
+        left
       </div>
       <div className="menu__control">
         <button

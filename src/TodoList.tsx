@@ -1,11 +1,12 @@
 import { useState } from "react";
 import styles from "./TodoList.module.css";
 import classNames from "classnames";
+import { Item } from "./App";
 
 export function TodoList(props) {
   return (
     <ul className="todo-list">
-      {props.items.map((item) => (
+      {props.items.map((item: Item) => (
         <TodoListItem
           key={item.id}
           item={item}
