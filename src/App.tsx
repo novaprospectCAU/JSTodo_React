@@ -8,13 +8,19 @@ import { CheckAllButton } from "./CheckAll.tsx";
 
 let lastUsedId = 0;
 
-function getNextId() {
+export interface Item {
+  id: number;
+  text: string;
+  isCompleted: boolean;
+}
+
+function getNextId(): number {
   return lastUsedId++;
 }
 
 export function App() {
-  const [items, setItems] = useState([]);
-  const [currentFilter, setCurrentFilter] = useState("all");
+  const [items, setItems] = useState<Item[]>([]);
+  const [currentFilter, setCurrentFilter] = useState<string>("all");
 
   return (
     <div className="main">
@@ -22,9 +28,9 @@ export function App() {
         <CheckAllButton
           items={items}
           onToggleAll={() => {
-            if (items.some((item) => !item.isCompleted)) {
+            if (items.some((item: Item) => !item.isCompleted)) {
               setItems(
-                items.map((item) =>
+                items.map((item: Item) =>
                   item.isCompleted === false
                     ? {
                         ...item,
@@ -35,7 +41,7 @@ export function App() {
               );
             } else {
               setItems(
-                items.map((item) =>
+                items.map((item: Item) =>
                   item.isCompleted === true
                     ? {
                         ...item,
@@ -66,7 +72,7 @@ export function App() {
         }}
         onCheck={(id: number) => {
           setItems(
-            items.map((item) =>
+            items.map((item: Item) =>
               item.id === id
                 ? {
                     ...item,
@@ -78,7 +84,7 @@ export function App() {
         }}
         onSwitchInputToText={(id: number, string: string) => {
           setItems(
-            items.map((item) =>
+            items.map((item: Item) =>
               item.id === id
                 ? {
                     ...item,
@@ -92,7 +98,7 @@ export function App() {
       <Toolbar
         items={items}
         currentFilter={currentFilter}
-        onChangeCurrentFilter={(filter) => {
+        onChangeCurrentFilter={(filter: string) => {
           setCurrentFilter(filter);
         }}
         onDeleteCheck={() => {
