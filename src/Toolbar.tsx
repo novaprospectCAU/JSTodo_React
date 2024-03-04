@@ -1,6 +1,13 @@
-import { Item, ToolbarProps } from "./App";
+import { Item } from "./types.ts";
 import styles from "./Toolbar.module.css";
 import classNames from "classnames";
+
+interface ToolbarProps {
+  items: Item[];
+  currentFilter: string;
+  onChangeCurrentFilter: (string: string) => void;
+  onDeleteCheck: () => void;
+}
 
 export function Toolbar(props: ToolbarProps) {
   const toolbarClass = classNames("todo-list__menu", {

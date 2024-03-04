@@ -1,7 +1,15 @@
 import { useState } from "react";
 import styles from "./TodoList.module.css";
 import classNames from "classnames";
-import { Item, TodoListProps } from "./App";
+import { Item } from "./types.ts";
+
+interface TodoListProps {
+  items: Item[];
+  currentFilter: string;
+  onDelete: (id: number) => void;
+  onCheck: (id: number) => void;
+  onSwitchInputToText: (id: number, string: string) => void;
+}
 
 interface TodoListItemProps {
   item: Item;

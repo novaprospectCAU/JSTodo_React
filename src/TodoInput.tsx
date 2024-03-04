@@ -1,5 +1,8 @@
-import { TodoInputProps } from "./App";
 import "./TodoInput.css";
+
+interface TodoInputProps {
+  onAddItem: (string: string) => void;
+}
 
 export function TodoInput(props: TodoInputProps) {
   return (
